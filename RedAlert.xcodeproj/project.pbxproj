@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D928405320274C010071030A /* TEst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TEst.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D928405320274C010071030A /* RedAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D928405620274C010071030A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D928405820274C010071030A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D928405B20274C010071030A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		D928405420274C010071030A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D928405320274C010071030A /* TEst.app */,
+				D928405320274C010071030A /* RedAlert.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,9 +70,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D928405220274C010071030A /* TEst */ = {
+		D928405220274C010071030A /* RedAlert */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D928406520274C010071030A /* Build configuration list for PBXNativeTarget "TEst" */;
+			buildConfigurationList = D928406520274C010071030A /* Build configuration list for PBXNativeTarget "RedAlert" */;
 			buildPhases = (
 				D928404F20274C010071030A /* Sources */,
 				D928405020274C010071030A /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = TEst;
+			name = RedAlert;
 			productName = TEst;
-			productReference = D928405320274C010071030A /* TEst.app */;
+			productReference = D928405320274C010071030A /* RedAlert.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -116,7 +116,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D928405220274C010071030A /* TEst */,
+				D928405220274C010071030A /* RedAlert */,
 			);
 		};
 /* End PBXProject section */
@@ -282,7 +282,7 @@
 				DEVELOPMENT_TEAM = HZ6LN96TP6;
 				INFOPLIST_FILE = "$(SRCROOT)/RedAlert/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = fr.jtbonhomme.test;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.jtbonhomme.redalert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -297,7 +297,7 @@
 				DEVELOPMENT_TEAM = HZ6LN96TP6;
 				INFOPLIST_FILE = "$(SRCROOT)/RedAlert/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = fr.jtbonhomme.test;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.jtbonhomme.redalert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -316,7 +316,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D928406520274C010071030A /* Build configuration list for PBXNativeTarget "TEst" */ = {
+		D928406520274C010071030A /* Build configuration list for PBXNativeTarget "RedAlert" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D928406620274C010071030A /* Debug */,
