@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  TEst
+//  Test
 //
 //  Created by Jean-Thierry BONHOMME on 04/02/2018.
 //  Copyright © 2018 Jean-Thierry BONHOMME. All rights reserved.
