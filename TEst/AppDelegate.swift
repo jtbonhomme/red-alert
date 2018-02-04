@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // This line to make launch screen last 3 seconds
-        Thread.sleep(forTimeInterval: 3.0)
+        // This line to make launch screen last 1.5 seconds
+        Thread.sleep(forTimeInterval: 1.5)
         // Override point for customization after application launch.
         return true
     }

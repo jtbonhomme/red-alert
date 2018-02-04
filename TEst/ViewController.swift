@@ -20,6 +20,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBOutlet weak var debugLabel: UILabel!
+    
+    @IBAction func buttonPressed(_ sender: UIButton, forEvent event: UIEvent) {
+        let text = "Connecting ..."
+        debugLabel.text = text
+    }
 }
 
