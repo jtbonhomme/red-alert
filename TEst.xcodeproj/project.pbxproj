@@ -12,6 +12,7 @@
 		D928405C20274C010071030A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D928405A20274C010071030A /* Main.storyboard */; };
 		D928405E20274C010071030A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D928405D20274C010071030A /* Assets.xcassets */; };
 		D928406120274C010071030A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D928405F20274C010071030A /* LaunchScreen.storyboard */; };
+		D9284069202756020071030A /* rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = D9284068202756020071030A /* rocket.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		D928405D20274C010071030A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D928406020274C010071030A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D928406220274C010071030A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9284068202756020071030A /* rocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rocket.png; path = ../../../../Downloads/rocket.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		D928405520274C010071030A /* TEst */ = {
 			isa = PBXGroup;
 			children = (
+				D9284068202756020071030A /* rocket.png */,
 				D928405620274C010071030A /* AppDelegate.swift */,
 				D928405820274C010071030A /* ViewController.swift */,
 				D928405A20274C010071030A /* Main.storyboard */,
@@ -124,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D928406120274C010071030A /* LaunchScreen.storyboard in Resources */,
+				D9284069202756020071030A /* rocket.png in Resources */,
 				D928405E20274C010071030A /* Assets.xcassets in Resources */,
 				D928405C20274C010071030A /* Main.storyboard in Resources */,
 			);
