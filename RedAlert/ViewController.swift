@@ -25,6 +25,10 @@ class ViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: UIButton, forEvent event: UIEvent) {
         let text = "Connecting ..."
         debugLabel.text = text
+        let hud = MBProgressHUD.showAdded(to: view, animated: true)
+        hud?.mode = MBProgressHUDMode.text
+        hud?.labelText = "Connecting"
+        hud?.hide(true, afterDelay: 1.0)
     }
 }
 
