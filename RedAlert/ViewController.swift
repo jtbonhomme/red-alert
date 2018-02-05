@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PusherSwift
 
 class ViewController: UIViewController {
 
