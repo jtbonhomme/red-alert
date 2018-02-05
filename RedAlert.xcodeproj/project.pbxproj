@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E55737A8994319E5F6CD4EA /* Pods_RedAlert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F06DABC75D160CFBD00DAD3 /* Pods_RedAlert.framework */; };
 		D928405720274C010071030A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D928405620274C010071030A /* AppDelegate.swift */; };
 		D928405920274C010071030A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D928405820274C010071030A /* ViewController.swift */; };
 		D928405C20274C010071030A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D928405A20274C010071030A /* Main.storyboard */; };
@@ -15,7 +14,25 @@
 		D928406120274C010071030A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D928405F20274C010071030A /* LaunchScreen.storyboard */; };
 		D9284069202756020071030A /* rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = D9284068202756020071030A /* rocket.png */; };
 		D928408020278D4A0071030A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D928407F20278D490071030A /* MBProgressHUD.m */; };
+		D928408A2028E11E0071030A /* PusherSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92840892028E1150071030A /* PusherSwift.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D92840862028E1150071030A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D92840812028E1150071030A /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6CC03E58C374904E139D5BACA0D76A9D;
+			remoteInfo = "Pods-RedAlert";
+		};
+		D92840882028E1150071030A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D92840812028E1150071030A /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27653B6A6033DB3EF0094A7B9627A957;
+			remoteInfo = PusherSwift;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		37F67F4B4A449AAF983047E9 /* Pods-RedAlert.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedAlert.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RedAlert/Pods-RedAlert.debug.xcconfig"; sourceTree = "<group>"; };
@@ -32,6 +49,7 @@
 		D928407D20278D480071030A /* RedAlert-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RedAlert-Bridging-Header.h"; sourceTree = "<group>"; };
 		D928407E20278D490071030A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		D928407F20278D490071030A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		D92840812028E1150071030A /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E55737A8994319E5F6CD4EA /* Pods_RedAlert.framework in Frameworks */,
+				D928408A2028E11E0071030A /* PusherSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +76,7 @@
 		2776880B6FDD99F800B6E811 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D92840812028E1150071030A /* Pods.xcodeproj */,
 				9F06DABC75D160CFBD00DAD3 /* Pods_RedAlert.framework */,
 			);
 			name = Frameworks;
@@ -96,6 +115,15 @@
 				D928407D20278D480071030A /* RedAlert-Bridging-Header.h */,
 			);
 			path = RedAlert;
+			sourceTree = "<group>";
+		};
+		D92840822028E1150071030A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D92840872028E1150071030A /* Pods_RedAlert.framework */,
+				D92840892028E1150071030A /* PusherSwift.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,12 +177,35 @@
 			mainGroup = D928404A20274C010071030A;
 			productRefGroup = D928405420274C010071030A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D92840822028E1150071030A /* Products */;
+					ProjectRef = D92840812028E1150071030A /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D928405220274C010071030A /* RedAlert */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D92840872028E1150071030A /* Pods_RedAlert.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_RedAlert.framework;
+			remoteRef = D92840862028E1150071030A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D92840892028E1150071030A /* PusherSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PusherSwift.framework;
+			remoteRef = D92840882028E1150071030A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D928405120274C010071030A /* Resources */ = {
