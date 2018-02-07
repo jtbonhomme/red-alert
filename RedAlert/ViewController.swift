@@ -11,13 +11,15 @@ import PusherSwift
 import UserNotifications
 
 class ViewController: UIViewController {
-    @IBOutlet weak var debugLabel: UILabel!
+    // https://github.com/pusher/pusher-websocket-swift/issues/109
     var pusher: Pusher!
-
+    var center: UNUserNotificationCenter!
+    var content: UNMutableNotificationContent!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let options = PusherClientOptions(
+        let pusherOptions = PusherClientOptions(
             host: .cluster("eu")
         )
 
@@ -27,12 +29,11 @@ class ViewController: UIViewController {
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
                 if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let _key = jsonResult["key"] as? String {
                     // do stuff
-                    pusher = Pusher(key: _key, options: options)
+                    pusher = Pusher(key: _key, options: pusherOptions)
                 }
             } catch {
                 // handle error
                 print("Did not find app key in key.json file\n")
-                self.debugLabel.text = "Did not find app key in key.json file\n"
             }
         }
         
@@ -41,33 +42,60 @@ class ViewController: UIViewController {
         print("subscribe pusher\n")
         let myChannel = pusher.subscribe("test")
         print("bind pusher events\n")
-        let _ = myChannel.bind(eventName: "foo", callback: { (data: Any?) -> Void in
-            print("pusher events received\n")
+
+        let _ = myChannel.bind(eventName: "foo", callback: { data in
+            print(data)
+            //let _ = self.pusher.subscribe("test", onMemberAdded: onMemberAdded)
+            
             if let data = data as? [String : AnyObject] {
-                if let message = data["message"] as? String {
-                    print(message + "\n")
-                    self.debugLabel.text = message
+                if let testVal = data["data"] as? String {
+                    print(testVal)
+                    // create notification and trigger it
+                    self.content = UNMutableNotificationContent()
+                    self.content.title = "RedAlert Notification"
+                    self.content.body = testVal
+                    self.content.sound = UNNotificationSound.default()
+                    
+                    // trigger notification in 1 second
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
+                                                                    repeats: false)
+                    
+                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: self.content, trigger: trigger)
+                    self.center.add(request)
+                    
+                    // alert
+                    let alertController = UIAlertController(title: "RedAlert", message:
+                        testVal, preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "Fermer", style: UIAlertActionStyle.default,handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
                 }
             }
         })
-        if #available(iOS 10.0, *) {
-            print("notification\n")
-            let center = UNUserNotificationCenter.current()
-            let content = UNMutableNotificationContent()
-            content.title = "Late wake up call"
-            content.body = "The early bird catches the worm, but the second mouse gets the cheese."
-            content.categoryIdentifier = "alarm"
-            content.userInfo = ["customData": "fizzbuzz"]
-            content.sound = UNNotificationSound.default()
-            
-            var dateComponents = DateComponents()
-            dateComponents.hour = 15
-            dateComponents.minute = 49
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-            
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-            center.add(request)
+
+        print("notification\n")
+        
+        // initialize notifications center
+        center = UNUserNotificationCenter.current()
+        
+        let notificationsOptions: UNAuthorizationOptions = [.alert, .sound];
+        center.requestAuthorization(options: notificationsOptions) {
+            (granted, error) in
+            if !granted {
+                print("Something went wrong while requesting notifications authorization")
+            }
         }
+        content = UNMutableNotificationContent()
+        content.title = "RedAlert Notification"
+        content.body = "CA MARCHE !"
+        content.sound = UNNotificationSound.default()
+        
+        // trigger notification in 1 second
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10,
+                                                        repeats: false)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: self.content, trigger: trigger)
+        center.add(request)
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,7 +105,6 @@ class ViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton, forEvent event: UIEvent) {
         let text = "Connecting ..."
-        debugLabel.text = text
         print("**********************\n")
         print(text)
         print("**********************\n")
