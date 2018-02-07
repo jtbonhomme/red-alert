@@ -26,10 +26,16 @@ class ViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: UIButton, forEvent event: UIEvent) {
         let text = "Connecting ..."
         debugLabel.text = text
+        print("**********************\n")
+        print(text)
+        print("**********************\n")
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud?.mode = MBProgressHUDMode.text
         hud?.labelText = "Connecting"
         hud?.hide(true, afterDelay: 1.0)
+
+        // open view DevicesView thanks to the "Connect Segue"
+        performSegue(withIdentifier: "ConnectSegue", sender: self)
     }
 }
 
