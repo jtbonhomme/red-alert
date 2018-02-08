@@ -25,6 +25,7 @@ class DevicesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func serialDidDiscoverPeripheral(_ peripheral: CBPeripheral, RSSI: NSNumber?) {
         print("DevicesViewController:serialDidDiscoverPeripheral")
+        print(peripheral.identifier)
        // check whether it is a duplicate
         for exisiting in peripherals {
             if exisiting.peripheral.identifier == peripheral.identifier { return }
@@ -34,6 +35,8 @@ class DevicesViewController: UIViewController, UITableViewDataSource, UITableVie
         let theRSSI = RSSI?.floatValue ?? 0.0
         peripherals.append((peripheral: peripheral, RSSI: theRSSI))
         peripherals.sort { $0.RSSI < $1.RSSI }
+        print("peripherals:")
+        print(peripherals)
         tableView.reloadData()
     }
     
@@ -174,15 +177,4 @@ class DevicesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(DevicesViewController.connectTimeOut), userInfo: nil, repeats: false)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

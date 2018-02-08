@@ -108,15 +108,6 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
                             print("notification error:")
                             print(error as Any)
                     })
-                    
-                    // alert
-                    /*
-                    let alertController = UIAlertController(title: "RedAlert", message:
-                        testVal, preferredStyle: UIAlertControllerStyle.alert)
-                    alertController.addAction(UIAlertAction(title: "Fermer", style: UIAlertActionStyle.default,handler: nil))
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                    */
                 }
             }
         })
@@ -137,16 +128,23 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
     @objc func reloadView() {
         // in case we're the visible view again
         serial.delegate = self
-        
+        NSLog("!!!!!!!!! RELOAD VIEW !!!!!!!!!")
         if serial.isReady {
             connectLabel.setTitle("Disconnect", for: [])
-            connectLabel.tintColor = UIColor.red
+            connectLabel.setTitleColor(UIColor.red, for: [])
         } else if serial.centralManager.state == .poweredOn {
             connectLabel.setTitle("Connect", for: [])
-            connectLabel.tintColor = view.tintColor
+            connectLabel.setTitleColor(UIColor.blue, for: [])
         } else {
+            // alert
+            let alertController = UIAlertController(title: "RedAlert", message:
+            "Vous devez activer le bluetooth !", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Fermer", style: UIAlertActionStyle.default,handler: nil))
+             
+            self.present(alertController, animated: true, completion: nil)
+ 
             connectLabel.setTitle("Connect", for: [])
-            connectLabel.tintColor = view.tintColor
+            connectLabel.setTitleColor(UIColor.red, for: [])
         }
     }
     
