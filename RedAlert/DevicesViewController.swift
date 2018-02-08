@@ -21,22 +21,27 @@ class DevicesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     /// Progress hud shown
     var progressHUD: MBProgressHUD?
+
     //MARK: BluetoothSerialDelegate
-    
     func serialDidDiscoverPeripheral(_ peripheral: CBPeripheral, RSSI: NSNumber?) {
         print("DevicesViewController:serialDidDiscoverPeripheral")
         print(peripheral.identifier)
+        print(peripheral.name!)
+        print(peripheral.state)
        // check whether it is a duplicate
         for exisiting in peripherals {
             if exisiting.peripheral.identifier == peripheral.identifier { return }
+            print("peripheral already recorded")
         }
         
         // add to the array, next sort & reload
         let theRSSI = RSSI?.floatValue ?? 0.0
+        print("record this peripheral")
         peripherals.append((peripheral: peripheral, RSSI: theRSSI))
         peripherals.sort { $0.RSSI < $1.RSSI }
         print("peripherals:")
         print(peripherals)
+        print("reload the tableview")
         tableView.reloadData()
     }
     
@@ -150,14 +155,20 @@ class DevicesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("tableView numberOfRowsInSection:")
+        print(peripherals.count)
         return peripherals.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // return a cell with the peripheral name as text in the label
+        print("tableView cellForRowAt:")
+        print(indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        print(cell)
         let label = cell.viewWithTag(1) as! UILabel!
         label?.text = peripherals[(indexPath as NSIndexPath).row].peripheral.name
+        print(label!)
         return cell
     }
     
@@ -165,12 +176,14 @@ class DevicesViewController: UIViewController, UITableViewDataSource, UITableVie
     //MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
         
         // the user has selected a peripheral, so stop scanning and proceed to the next view
+        print("the user has selected a peripheral, so stop scanning and proceed to the next view")
         serial.stopScan()
         selectedPeripheral = peripherals[(indexPath as NSIndexPath).row].peripheral
+        print("connect to:")
+        print(selectedPeripheral)
         serial.connectToPeripheral(selectedPeripheral!)
         progressHUD = MBProgressHUD.showAdded(to: view, animated: true)
         progressHUD!.labelText = "Connecting"
