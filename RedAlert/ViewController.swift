@@ -128,22 +128,20 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
     @objc func reloadView() {
         // in case we're the visible view again
         serial.delegate = self
-        NSLog("!!!!!!!!! RELOAD VIEW !!!!!!!!!")
         if serial.isReady {
             connectLabel.setTitle("Disconnect", for: [])
-            connectLabel.setTitleColor(UIColor.red, for: [])
+            connectLabel.setTitleColor(UIColor.cyan, for: [])
         } else if serial.centralManager.state == .poweredOn {
             connectLabel.setTitle("Connect", for: [])
-            connectLabel.setTitleColor(UIColor.blue, for: [])
+            connectLabel.setTitleColor(UIColor.white, for: [])
         } else {
             // alert
             let alertController = UIAlertController(title: "RedAlert", message:
             "Vous devez activer le bluetooth !", preferredStyle: UIAlertControllerStyle.alert)
             alertController.addAction(UIAlertAction(title: "Fermer", style: UIAlertActionStyle.default,handler: nil))
-             
             self.present(alertController, animated: true, completion: nil)
- 
-            connectLabel.setTitle("Connect", for: [])
+
+            connectLabel.setTitle("-", for: [])
             connectLabel.setTitleColor(UIColor.red, for: [])
         }
     }
