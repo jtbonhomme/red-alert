@@ -81,8 +81,8 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
                     content.sound = UNNotificationSound.default()
                     content.badge = 1
 
-                    // trigger notification in 1 second
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
+                    // trigger notification in 5 second
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5,
                                                                     repeats: false)
                     
                     let request = UNNotificationRequest(identifier: "redAlertNotification", content: content, trigger: trigger)
