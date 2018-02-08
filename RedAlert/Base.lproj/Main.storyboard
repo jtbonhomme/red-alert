@@ -37,13 +37,23 @@
                                     <action selector="buttonPressed:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wCB-O5-cWq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OId-Di-tUf">
+                                <rect key="frame" x="88" y="233" width="200" height="200"/>
+                                <state key="normal" image="big-red-button_33652"/>
+                                <connections>
+                                    <action selector="bigRedButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0oa-cQ-2dE"/>
+                                    <action selector="buttonPressed:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LRR-SR-BO1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="L2Z-9I-boN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="2" id="Ec4-FX-pZD"/>
                             <constraint firstItem="0hI-16-jxj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="92" id="ShU-Fi-lGV"/>
                             <constraint firstItem="L2Z-9I-boN" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Z68-aE-o1N"/>
+                            <constraint firstItem="OId-Di-tUf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Z8N-26-dwt"/>
                             <constraint firstItem="0hI-16-jxj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="nbS-em-adD"/>
+                            <constraint firstItem="OId-Di-tUf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wpF-Vc-LLP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -53,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37.5" y="24.375"/>
+            <point key="canvasLocation" x="36" y="23.838080959520241"/>
         </scene>
         <!--Devices View Controller-->
         <scene sceneID="gvt-Vl-E9W">
@@ -95,4 +105,7 @@
             <point key="canvasLocation" x="853.60000000000002" y="23.838080959520241"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="big-red-button_33652" width="500" height="500"/>
+    </resources>
 </document>

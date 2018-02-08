@@ -122,6 +122,8 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func bigRedButtonPressed(_ sender: Any) {
+    }
     @IBAction func buttonPressed(_ sender: UIButton, forEvent event: UIEvent) {
         let text = "Connecting ..."
         print("**********************\n")
