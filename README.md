@@ -10,6 +10,11 @@ You also will need the excellent tool [ios-deploy](https://github.com/phonegap/i
 $ npm install -g ios-deploy
 ```
 
+# Bluetooth
+
+The bluetooth LE implementation is largely inspired from [HM10-BluetoothSerial project](https://github.com/hoiberg/HM10-BluetoothSerial-iOS)
+It is configured to seek a HM10 BLE device.
+
 # Notification
 
 1. Create an account and an app on [pusher.com](https://pusher.com/), there is a free plan that will be enough for our needs.

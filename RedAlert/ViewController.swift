@@ -9,16 +9,40 @@
 import UIKit
 import PusherSwift
 import UserNotifications
+import CoreBluetooth
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificationCenterDelegate {
+
+    // BluetoothSerial Delegate stubs
+    func serialDidReceiveString(_ message: String) {
+    }
+
+    func serialDidChangeState() {
+    }
+    
+    func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?) {
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        completionHandler([.alert, .sound])
+    }
+    
     // https://github.com/pusher/pusher-websocket-swift/issues/109
     var pusher: Pusher!
     var center: UNUserNotificationCenter!
-    var content: UNMutableNotificationContent!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // initialize bluetooth-serial and get delegation for BluetoothSerial
+        serial = BluetoothSerial(delegate: self)
+        serial.delegate = self
+        
+        // get delegation for UINotifications
+        UNUserNotificationCenter.current().delegate = self
+
+        // initialize pusher connection
         let pusherOptions = PusherClientOptions(
             host: .cluster("eu")
         )
@@ -51,24 +75,32 @@ class ViewController: UIViewController {
                 if let testVal = data["data"] as? String {
                     print(testVal)
                     // create notification and trigger it
-                    self.content = UNMutableNotificationContent()
-                    self.content.title = "RedAlert Notification"
-                    self.content.body = testVal
-                    self.content.sound = UNNotificationSound.default()
-                    
+                    let content = UNMutableNotificationContent()
+                    content.title = "RedAlert Notification"
+                    content.body = "Message:\n" + testVal
+                    content.sound = UNNotificationSound.default()
+                    content.badge = 1
+
                     // trigger notification in 1 second
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
                                                                     repeats: false)
                     
-                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: self.content, trigger: trigger)
-                    self.center.add(request)
+                    let request = UNNotificationRequest(identifier: "redAlertNotification", content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request,
+                        withCompletionHandler: { (error) in
+                            // Handle error
+                            print("notification error:")
+                            print(error)
+                    })
                     
                     // alert
+                    /*
                     let alertController = UIAlertController(title: "RedAlert", message:
                         testVal, preferredStyle: UIAlertControllerStyle.alert)
                     alertController.addAction(UIAlertAction(title: "Fermer", style: UIAlertActionStyle.default,handler: nil))
                     
                     self.present(alertController, animated: true, completion: nil)
+                    */
                 }
             }
         })
@@ -76,26 +108,13 @@ class ViewController: UIViewController {
         print("notification\n")
         
         // initialize notifications center
-        center = UNUserNotificationCenter.current()
-        
         let notificationsOptions: UNAuthorizationOptions = [.alert, .sound];
-        center.requestAuthorization(options: notificationsOptions) {
+        UNUserNotificationCenter.current().requestAuthorization(options: notificationsOptions) {
             (granted, error) in
             if !granted {
                 print("Something went wrong while requesting notifications authorization")
             }
         }
-        content = UNMutableNotificationContent()
-        content.title = "RedAlert Notification"
-        content.body = "CA MARCHE !"
-        content.sound = UNNotificationSound.default()
-        
-        // trigger notification in 1 second
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10,
-                                                        repeats: false)
-        
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: self.content, trigger: trigger)
-        center.add(request)
     }
 
     override func didReceiveMemoryWarning() {

@@ -17,6 +17,7 @@
 		D928408A2028E11E0071030A /* PusherSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92840892028E1150071030A /* PusherSwift.framework */; };
 		D9284091202B2EBD0071030A /* DevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9284090202B2EBD0071030A /* DevicesViewController.swift */; };
 		D9284095202B51400071030A /* key.json in Resources */ = {isa = PBXBuildFile; fileRef = D9284094202B51400071030A /* key.json */; };
+		D9284098202B6B8C0071030A /* BluetoothSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9284097202B6B8C0071030A /* BluetoothSerial.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		D92840812028E1150071030A /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		D9284090202B2EBD0071030A /* DevicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesViewController.swift; sourceTree = "<group>"; };
 		D9284094202B51400071030A /* key.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = key.json; sourceTree = "<group>"; };
+		D9284097202B6B8C0071030A /* BluetoothSerial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothSerial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				D928407D20278D480071030A /* RedAlert-Bridging-Header.h */,
 				D9284090202B2EBD0071030A /* DevicesViewController.swift */,
 				D9284094202B51400071030A /* key.json */,
+				D9284097202B6B8C0071030A /* BluetoothSerial.swift */,
 			);
 			path = RedAlert;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				D928405920274C010071030A /* ViewController.swift in Sources */,
 				D928408020278D4A0071030A /* MBProgressHUD.m in Sources */,
 				D928405720274C010071030A /* AppDelegate.swift in Sources */,
+				D9284098202B6B8C0071030A /* BluetoothSerial.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

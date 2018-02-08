@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import CoreBluetooth
 
-class DevicesViewController: UIViewController {
+class DevicesViewController: UIViewController, BluetoothSerialDelegate {
+
+    // BluetoothSerial Delegate stubs
+    func serialDidReceiveString(_ message: String) {
+    }
+    
+    func serialDidChangeState() {
+    }
+    
+    func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        serial.delegate = self
     }
 
     @IBAction func cancelPressed(_ sender: Any) {
