@@ -85,6 +85,12 @@ final class BluetoothSerial: NSObject, CBCentralManagerDelegate, CBPeripheralDel
     /// Whether this serial is ready to send and receive data
     var isReady: Bool {
         get {
+            print("BluetoothSerial:isReady:centralManager.state == .poweredOn:")
+            print(centralManager.state == .poweredOn)
+            print("BluetoothSerial:isReady:connectedPeripheral:")
+            print(connectedPeripheral)
+            print("BluetoothSerial:isReady:writeCharacteristic:")
+            print(writeCharacteristic)
             return centralManager.state == .poweredOn &&
                 connectedPeripheral != nil &&
                 writeCharacteristic != nil

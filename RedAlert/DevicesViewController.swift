@@ -9,7 +9,12 @@
 import UIKit
 import CoreBluetooth
 
+protocol ModalHandler {
+    func modalDismissed()
+}
+
 final class DevicesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, BluetoothSerialDelegate {
+    var delegate : ModalHandler! = nil
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -108,14 +113,6 @@ final class DevicesViewController: UIViewController, UITableViewDataSource, UITa
         
         print("peripherals[(indexPath as NSIndexPath).row].peripheral.name:")
         print(peripherals[(indexPath as NSIndexPath).row].peripheral.name)
-        
-        /*print("cell:")
-        print(cell)
-        
-        let label = cell.viewWithTag(1) as! UILabel!
-        label?.text = peripherals[(indexPath as NSIndexPath).row].peripheral.name
-        print("label:")
-        print(label!)*/
 
         cell.textLabel?.text = peripherals[(indexPath as NSIndexPath).row].peripheral.name
         return cell
@@ -195,7 +192,10 @@ final class DevicesViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: "reloadStartViewController"), object: self)
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            print("DevicesViewController:serialIsReady:dismiss")
+            self.delegate?.modalDismissed()
+        }
     }
     
     func serialDidChangeState() {

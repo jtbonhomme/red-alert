@@ -11,7 +11,12 @@ import PusherSwift
 import UserNotifications
 import CoreBluetooth
 
-class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificationCenterDelegate {
+class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificationCenterDelegate, ModalHandler {
+    // called when DevicesViewController dismiss
+    func modalDismissed() {
+        print("ViewController:modalDismissed")
+        reloadView()
+    }
     
     @IBOutlet weak var connectLabel: UIButton!
     
@@ -124,10 +129,11 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
         }
     }
 
-
     @objc func reloadView() {
         // in case we're the visible view again
         serial.delegate = self
+        print("serial is ready ?")
+        print(serial.isReady)
         if serial.isReady {
             connectLabel.setTitle("Disconnect", for: [])
             connectLabel.setTitleColor(UIColor.cyan, for: [])
@@ -155,7 +161,18 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
         print("**********************\n")
         print("*** BIG RED BUTTON ***\n")
         print("**********************\n")
-        serial.sendBytesToDevice([1])
+        if serial.connectedPeripheral == nil {
+            // alert
+            let alertController = UIAlertController(title: "RedAlert", message:
+                "Vous devez vous connecter à un périphérique bluetooth !", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Fermer", style: UIAlertActionStyle.default,handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            
+            connectLabel.setTitle("Connect", for: [])
+            connectLabel.setTitleColor(UIColor.white, for: [])
+        } else {
+            serial.sendBytesToDevice([1])
+        }
     }
 
     @IBAction func buttonPressed(_ sender: UIButton, forEvent event: UIEvent) {
@@ -176,5 +193,13 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
             reloadView()
         }
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ConnectSegue" {
+            let destination = segue.destination as! DevicesViewController
+            destination.delegate = self
+        }
+    }
+
 }
 
