@@ -42,7 +42,6 @@
                                 <state key="normal" image="big-red-button_33652"/>
                                 <connections>
                                     <action selector="bigRedButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0oa-cQ-2dE"/>
-                                    <action selector="buttonPressed:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LRR-SR-BO1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -51,9 +50,9 @@
                             <constraint firstItem="L2Z-9I-boN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="2" id="Ec4-FX-pZD"/>
                             <constraint firstItem="0hI-16-jxj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="92" id="ShU-Fi-lGV"/>
                             <constraint firstItem="L2Z-9I-boN" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Z68-aE-o1N"/>
-                            <constraint firstItem="OId-Di-tUf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Z8N-26-dwt"/>
+                            <constraint firstItem="OId-Di-tUf" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Z8N-26-dwt"/>
                             <constraint firstItem="0hI-16-jxj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="nbS-em-adD"/>
-                            <constraint firstItem="OId-Di-tUf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wpF-Vc-LLP"/>
+                            <constraint firstItem="OId-Di-tUf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wpF-Vc-LLP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -106,6 +105,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="big-red-button_33652" width="500" height="500"/>
+        <image name="big-red-button_33652" width="200" height="200"/>
     </resources>
 </document>

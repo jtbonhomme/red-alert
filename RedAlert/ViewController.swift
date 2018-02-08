@@ -123,7 +123,11 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
     }
     
     @IBAction func bigRedButtonPressed(_ sender: Any) {
+        print("**********************\n")
+        print("*** BIG RED BUTTON ***\n")
+        print("**********************\n")
     }
+
     @IBAction func buttonPressed(_ sender: UIButton, forEvent event: UIEvent) {
         let text = "Connecting ..."
         print("**********************\n")
