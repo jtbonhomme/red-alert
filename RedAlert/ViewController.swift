@@ -12,25 +12,40 @@ import UserNotifications
 import CoreBluetooth
 
 class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificationCenterDelegate {
+    
+    @IBOutlet weak var connectLabel: UIButton!
+    
+    // fix pusher issue : https://github.com/pusher/pusher-websocket-swift/issues/109
+    var pusher: Pusher!
 
     // BluetoothSerial Delegate stubs
     func serialDidReceiveString(_ message: String) {
+        print("ViewController:serialDidReceiveString")
     }
 
     func serialDidChangeState() {
+        print("ViewController:serialDidChangeState")
+        reloadView()
+        if serial.centralManager.state != .poweredOn {
+            let hud = MBProgressHUD.showAdded(to: view, animated: true)
+            hud?.mode = MBProgressHUDMode.text
+            hud?.labelText = "Bluetooth turned off"
+            hud?.hide(true, afterDelay: 1.0)
+        }
     }
     
     func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?) {
+        print("ViewController:serialDidDisconnect")
+        reloadView()
+        let hud = MBProgressHUD.showAdded(to: view, animated: true)
+        hud?.mode = MBProgressHUDMode.text
+        hud?.labelText = "Disconnected"
+        hud?.hide(true, afterDelay: 1.0)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
         completionHandler([.alert, .sound])
     }
-    
-    // https://github.com/pusher/pusher-websocket-swift/issues/109
-    var pusher: Pusher!
-    var center: UNUserNotificationCenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +53,8 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
         // initialize bluetooth-serial and get delegation for BluetoothSerial
         serial = BluetoothSerial(delegate: self)
         serial.delegate = self
-        
+        reloadView()
+
         // get delegation for UINotifications
         UNUserNotificationCenter.current().delegate = self
 
@@ -68,7 +84,7 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
         print("bind pusher events\n")
 
         let _ = myChannel.bind(eventName: "foo", callback: { data in
-            print(data)
+            print(data as Any)
             //let _ = self.pusher.subscribe("test", onMemberAdded: onMemberAdded)
             
             if let data = data as? [String : AnyObject] {
@@ -90,7 +106,7 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
                         withCompletionHandler: { (error) in
                             // Handle error
                             print("notification error:")
-                            print(error)
+                            print(error as Any)
                     })
                     
                     // alert
@@ -117,6 +133,23 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
         }
     }
 
+
+    @objc func reloadView() {
+        // in case we're the visible view again
+        serial.delegate = self
+        
+        if serial.isReady {
+            connectLabel.setTitle("Disconnect", for: [])
+            connectLabel.tintColor = UIColor.red
+        } else if serial.centralManager.state == .poweredOn {
+            connectLabel.setTitle("Connect", for: [])
+            connectLabel.tintColor = view.tintColor
+        } else {
+            connectLabel.setTitle("Connect", for: [])
+            connectLabel.tintColor = view.tintColor
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -126,6 +159,7 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
         print("**********************\n")
         print("*** BIG RED BUTTON ***\n")
         print("**********************\n")
+        serial.sendBytesToDevice([1])
     }
 
     @IBAction func buttonPressed(_ sender: UIButton, forEvent event: UIEvent) {
@@ -139,7 +173,12 @@ class ViewController: UIViewController, BluetoothSerialDelegate, UNUserNotificat
         hud?.hide(true, afterDelay: 1.0)
 
         // open view DevicesView thanks to the "Connect Segue"
-        performSegue(withIdentifier: "ConnectSegue", sender: self)
+        if serial.connectedPeripheral == nil {
+            performSegue(withIdentifier: "ConnectSegue", sender: self)
+        } else {
+            serial.disconnect()
+            reloadView()
+        }
     }
 }
 
